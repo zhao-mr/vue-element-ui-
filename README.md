@@ -11,6 +11,7 @@ npm install 安装
 
 # serve with hot reload at localhost:8080
 npm run dev
+项目运行启动
 
 # build for production with minification
 npm run build
