@@ -466,6 +466,10 @@ export default {
     this.explorationCenterId = this.$store.state.name;
     // this.sajdkwj();
     // this.activeIndex = window.location.href.split("/")[3];
+  },
+  created() {
+    localStorage.setItem("page", "tagmanage");
+    // localStorage.setItem("page", JSON.stringify(info));
   }
 };
 </script>
@@ -493,7 +497,7 @@ export default {
   margin-right: 10px;
   margin-left: 0;
 }
-.active {
+.Bosconermulu .active {
   background: #909399;
   color: #fff;
 }

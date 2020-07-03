@@ -347,7 +347,6 @@
         <el-button type="primary" @click="upload2">确 定</el-button>
       </span>
     </el-dialog>
-    <!-- {{ listPicture }} -->
   </div>
 </template>
 <script>
@@ -416,7 +415,7 @@ export default {
           explorationCenterId: shue
         })
         .then(data => {
-          console.log(data.data.data.list);
+          // console.log(data.data.data.list);
           this.listPicture = data.data.data.list;
           this.pages = data.data.data.pages;
           this.pageSize = data.data.data.pageSize;
@@ -538,7 +537,7 @@ export default {
           .then(data => {
             this.isShow = true;
             this.leishow = false;
-            console.log(data.data.data.list);
+            // console.log(data.data.data.list);
             // this.filterPicture = data.data.data.list;
             this.listPicture2 = data.data.data.list; //改变数据
             this.pages1 = data.data.data.pages;
@@ -625,7 +624,7 @@ export default {
           this.Secondvalue2 = data.data.data.secondId;
           this.input = data.data.data.pictureName;
           this.imageUrl = data.data.data.pictureTargetPath;
-          this.currentSel(data.data.data.secondId);
+          this.currentSel(data.data.data.primaryId); //赋值一级的值
           // this.primaryvalue2 = this.
           // this.currentSel(e);
         })
@@ -732,6 +731,10 @@ export default {
     //请求一级目录
     this.explorationCenterId = this.$store.state.name;
     // this.sajdkwj();
+  },
+  created() {
+    localStorage.setItem("page", "resourcemanage");
+    // localStorage.setItem("page", JSON.stringify(info));
   }
 };
 </script>
