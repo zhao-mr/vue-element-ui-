@@ -3,7 +3,7 @@
     <div class="Coard">
       <el-row>
         <el-card class="box-card">
-          <h2 style="text-align: center;">欢 迎 登 陆</h2>
+          <h2 style="text-align: center;">欢 迎 登 录</h2>
           <br />
           <el-form
             :model="ruleForm"
@@ -113,7 +113,7 @@ export default {
             });
             const self = this;
             if (self.checked == true) {
-              console.log("记住");
+              // console.log("记住");
               that.setCookie(this.ruleForm.account, this.ruleForm.password, 7); //保存到cookie
             } else {
               console.log("清空Cookie");

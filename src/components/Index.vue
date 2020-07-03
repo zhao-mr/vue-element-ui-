@@ -27,7 +27,7 @@
     <el-container>
       <el-aside width="240px">
         <el-menu
-          :default-active="activeIndex"
+          :default-active="this.activeIndex"
           background-color
           @open="handleOpen"
           class="el-menu-vertical-demo"
@@ -48,7 +48,6 @@
       </el-aside>
       <el-main>
         <router-view></router-view>
-        <!-- {{ Center }} -->
       </el-main>
     </el-container>
   </el-container>
@@ -79,22 +78,37 @@ export default {
     }
   },
   mounted() {
-    // console.log(window.location.href.split("/")[3]);
-    // this.activeIndex = window.location.href.split("/")[3];
+    // console.log(window.location.href.split("/"));
+    // if (window.location.href.split("/")[4] == "Index") {
+    //   this.activeIndex = "tagmanage";
+    // } else {
+    //   this.activeIndex = window.location.href.split("/")[4];
+    // }
+    // this.activeIndex = window.location.href.split("/")[4];
     //获取信息
     axios
       .get(api.Center)
       .then(data => {
         // console.log(data);
         this.Center = data.data.data;
-        if (this.expValue == "") {
-          this.expValue = this.Center[0].explorationCenterId;
-          this.xuanxiang(this.expValue); //默认第一个
-        }
+        // if (this.expValue == "") {
+        this.expValue = this.Center[0].explorationCenterId;
+        this.xuanxiang(this.expValue); //默认第一个
+        // }
       })
       .catch(function(error) {
         console.log(error);
       });
+  },
+  created() {
+    // this.activeIndex = JSON.parse(localStorage.getItem("page"));.
+    // localStorage.setItem("page", this.expValue);
+    var lcozhi = localStorage.getItem("page");
+    if (lcozhi == "" || lcozhi == null || lcozhi == undefined) {
+      this.activeIndex = "tagmanage";
+    } else {
+      this.activeIndex = localStorage.getItem("page");
+    }
   }
 };
 </script>
@@ -206,7 +220,7 @@ body > .el-container {
 .Bosidex .el-link {
   margin-right: 45px;
 }
-.active {
+.Bosidex .active {
   color: #409eff;
   border-bottom: 1px solid #409eff;
 }
