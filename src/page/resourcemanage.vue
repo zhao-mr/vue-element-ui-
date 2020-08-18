@@ -241,9 +241,14 @@
 
         <div class="centerImg">
           <p>选择图片</p>
-          <p>
-            注：图片长、宽需为2的n次幂像素值；例：256、512、1024、2048
-          </p>
+          <div class="cengPxioa">
+            <p>
+              注1：图片长、宽需为2的n次幂像素值；
+            </p>
+            <p style="margin-left: 38px;">例： 256、512、1024、2048</p>
+            <p>注2：为保证显示效果，上传图片需为无缝图片</p>
+          </div>
+
           <el-upload
             class="avatar-uploader"
             action="#"
@@ -255,7 +260,11 @@
             :auto-upload="false"
           >
             <img v-if="imageUrl" :src="imageUrl" class="avatar" />
-            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+            <i
+              v-else
+              class="el-icon-plus avatar-uploader-icon"
+              style="display: flex;justify-content: center;align-items: center;"
+            ></i>
           </el-upload>
         </div>
       </div>
@@ -594,15 +603,23 @@ export default {
           .post(api.imagesture, formData)
           .then(data => {
             // console.log(data);
-            this.$message({
-              showClose: true,
-              message: data.data.msg,
-              type: "success"
-            });
-            this.centerDialogVisible = false;
-            this.isShow = false;
-            this.leishow = true;
-            this.leisxin();
+            if (data.data.status == 0) {
+              this.$message({
+                showClose: true,
+                message: data.data.msg,
+                type: "success"
+              });
+              this.centerDialogVisible = false;
+              this.isShow = false;
+              this.leishow = true;
+              this.leisxin();
+            } else if (data.data.status == 1) {
+              this.$message({
+                showClose: true,
+                message: data.data.msg,
+                type: "warning"
+              });
+            }
           })
           .catch(function(error) {
             console.log(error);
@@ -658,18 +675,31 @@ export default {
           .post(api.compPicture, formData)
           .then(data => {
             // console.log(data);
-            this.$message({
-              showClose: true,
-              message: data.data.msg,
-              type: "success"
-            });
-            this.centerDialogVisible2 = false;
-            this.isShow = false;
-            this.leishow = true;
-            this.leisxin();
+            if (data.data.status == 0) {
+              this.$message({
+                showClose: true,
+                message: data.data.msg,
+                type: "success"
+              });
+              this.centerDialogVisible2 = false;
+              this.isShow = false;
+              this.leishow = true;
+              this.leisxin();
+            } else if (data.data.status == 1) {
+              this.$message({
+                showClose: true,
+                message: data.data.msg,
+                type: "warning"
+              });
+            }
           })
           .catch(function(error) {
             console.log(error);
+            // this.$message({
+            //   showClose: true,
+            //   message: "请进行修改",
+            //   type: "warning"
+            // });
           });
       }
     },
@@ -762,6 +792,7 @@ export default {
   display: flex;
   align-content: center;
   align-items: center;
+  justify-content: center;
   margin: 20px 0;
 }
 .DialogLfent {
@@ -820,5 +851,8 @@ export default {
 .etosdw .el-dialog__body {
   border-bottom: 1px solid #eee;
   border-top: 1px solid #eee;
+}
+.cengPxioa {
+  text-align: left;
 }
 </style>
