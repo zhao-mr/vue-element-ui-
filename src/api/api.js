@@ -1,7 +1,8 @@
 /**
  * api接口
  */
-const url = 'http://106.14.183.14/'
+const url = 'http://106.14.183.14/' //线上
+// const url = 'http://192.168.0.159:8866/' //本地
 const api = {
   Center: url + 'picture/getCenter', // 角色1.2
   potList: url + 'picture/getPrimaryTitle', // 一级目录接口
